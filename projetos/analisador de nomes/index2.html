@@ -23,13 +23,13 @@
     resultado.innerHTML += `<p class="resultado"><strong>Seu nome é:</strong> ${nome}</p>`;
     resultado.innerHTML += `<p class="resultado"><strong>O total de caracteres (sem espaços) é:</strong> ${nome.replace(/\s/g, '').length}</p>`;
     resultado.innerHTML += `<p class="resultado"><strong>A segunda letra do nome: </strong>${nome[1]}</p>`;
-    resultado.innerHTML += `<p class="resultado"><strong>O índice da primeira ocorrência da letra "A": </strong>${nome.indexOf("e")}</h1>`;
-    resultado.innerHTML += `<p class="resultado"><strong>O índice da última ocorrência da letra "A": </strong>${nome.lastIndexOf("e")}</h1>`;
+    resultado.innerHTML += `<p class="resultado"><strong>O índice da primeira ocorrência da letra "A": </strong>${nome.indexOf("a")}</h1>`;
+    resultado.innerHTML += `<p class="resultado"><strong>O índice da última ocorrência da letra "A": </strong>${nome.lastIndexOf("a")}</h1>`;
     resultado.innerHTML += `<p class="resultado"><strong>As últimas 3 letras do nome: </strong>${nome.slice(-3)}</h1>`;
     resultado.innerHTML += `<p class="resultado"><strong>O nome todo em maiúsculas: </strong>${nome.toUpperCase()}</h1>`;
     resultado.innerHTML += `<p class="resultado"><strong>O nome todo em minúsculas: </strong>${nome.toLowerCase()}</h1>`;
     resultado.innerHTML += `<p class="resultado"><strong>Nome em palavras:</strong> ${nome.split(" ")}`
   </script>
-
+ 
 </body>
 </html>
