@@ -1,0 +1,83 @@
+.body{
+    font-family: arial;
+}
+.titulo{
+    
+    background-color: lightgrey;
+    padding-left: 10px;
+    padding: 2%;
+}
+.colunas {
+    border: none;
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    row-gap: 0px;
+    column-gap: 5px;
+}
+.coluna_interior img{
+    width: 100%;
+    height: 100%;
+}
+.coluna1, img{
+    display: grid;
+    align-content: center;
+    align-items: center;
+    border: none;
+    grid-column: 1/2;
+    grid-row: 1/2;
+    border-radius: 10px;
+}
+.coluna2{
+    border: none;
+    grid-column: 2/3;
+    grid-row: 1/2;
+    border-radius: 10px;
+}
+.coluna3{
+    border: none;
+    grid-column: 3/4;
+    grid-row: 1/2;
+    border-radius: 10px;
+}
+.cards{
+    border: none;
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    grid-template-rows: 1fr;
+    gap: 10px;
+}
+.card_interior{
+    border: 1px solid lightgrey;
+    border-radius: 10px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    justify-content: center;
+    padding-top: 5%;
+}
+.card_interior img{
+    width: 60%;
+    height: 40%;
+}
+.card_interior:hover{
+    background-color: lightgray;
+}
+.galeria{
+    border: 1px solid;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-template-rows: repeat(4, 1fr);
+    gap: 15px;
+    
+}
+.galeria_interior img{
+}
+
+
+
+.item1{
+    border: 1px solid;
+    grid-column: 1/ 3;
+    grid-row: 1/2;
+}
