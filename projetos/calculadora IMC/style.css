@@ -1,0 +1,34 @@
+.body{
+    background-color: red;
+}
+
+.container{
+    border: solid 1px;
+    border-radius: 10px;
+}
+.imc-row{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.formulario{
+    margin-left: 10%;
+}
+
+.imc-header{
+    background-color: red;
+}
+.imc-table{
+    text-align: center;
+}
+
+.peso{
+    padding-right: 70%;
+}
+.altura{
+    padding-right: 70%;
+}
+
+.formulario{
+    margin-left: 2%;
+}
