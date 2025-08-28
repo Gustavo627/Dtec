@@ -1,0 +1,21 @@
+/* css/main.css */
+@import "./reset.css";
+@import "./layout/grid.css";
+
+
+/* estilos específicos da página */
+    /* =========================================================
+   HERO (texto pequeno, botão pequeno, contraste fraco)
+   ========================================================= */
+.hero {
+    background: ;
+    padding: 12px;
+    text-align: center;
+}
+
+.hero h2 {
+    font-size: 25px;
+    /* pequeno para um título */
+    color: black;
+    /* cinza médio = contraste fraco */
+}
