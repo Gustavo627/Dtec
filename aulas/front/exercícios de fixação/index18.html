@@ -1,0 +1,20 @@
+<div class="container">
+    <div class="thumb"><img src="https://picsum.photos/seed/1/600/400" alt="img 1"></div>
+    <div class="thumb"><img src="https://picsum.photos/seed/2/600/400" alt="img 2"></div>
+    <div class="thumb"><img src="https://picsum.photos/seed/3/600/400" alt="img 3"></div>
+    <div class="thumb"><img src="https://picsum.photos/seed/4/600/400" alt="img 4"></div>
+    <div class="thumb"><img src="https://picsum.photos/seed/5/600/400" alt="img 5"></div>
+    <div class="thumb"><img src="https://picsum.photos/seed/6/600/400" alt="img 6"></div>
+  </div>
+
+  <style>
+    .container{
+        display: grid;
+        grid-column: repeat(auto-fit, minmax(160px, 1fr));
+        grid-auto-rows: 120px;
+    }
+    .thumb{
+        object-fit: cover;
+    }
+
+  </style>

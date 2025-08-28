@@ -1,0 +1,37 @@
+<div class="container grid-areas">
+    <header class="area header">HEADER</header>
+    <aside class="area sidebar">SIDEBAR</aside>
+    <section class="area content">CONTENT</section>
+    <footer class="area footer">FOOTER</footer>
+  </div>
+
+  <style>
+    .container {
+  display: grid; gap: 12px;
+  grid-template-columns: 200px 1fr;
+  grid-template-rows: auto 1fr auto;
+
+  grid-template-areas:
+    "header header"
+    "sidebar content"
+    "footer footer";
+}
+    .header{
+        grid-area: header;
+        background-color: red;
+    }
+    .sidebar{
+        grid-area: sidebar;
+        background-color: green;
+        line-height: 80vh;
+    }
+    .content {
+        grid-area: content;
+        background-color: yellow;
+    }
+    .footer {
+        grid-area: footer;
+        background-color: blue;
+    }
+
+  </style>

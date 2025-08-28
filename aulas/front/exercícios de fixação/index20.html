@@ -1,0 +1,38 @@
+<div class="container">
+    <section class="hero">HERO</section>
+    <section class="benefits">
+      <article class="benefit">Benefício 1</article>
+      <article class="benefit">Benefício 2</article>
+      <article class="benefit">Benefício 3</article>
+    </section>
+    <section class="cta">Chamada para Ação</section>
+  </div>
+
+  <style>
+    .container { 
+        display: grid; 
+        gap: 12px; 
+        grid-template-areas: 
+        "hero"
+        "benefits" 
+        "cta"; 
+    }
+    .hero { 
+        grid-area: hero; 
+    }
+   .benefits { 
+    grid-area: benefits; 
+    display: grid; 
+    grid-template-columns: repeat(3, 1fr); 
+    }
+
+    .cta { 
+        grid-area: cta; 
+    }
+
+    @media (max-width: 700px) {
+        .container {
+    grid-template-columns: 1fr;
+    }
+    } 
+  </style>
