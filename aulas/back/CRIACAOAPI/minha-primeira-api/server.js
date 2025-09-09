@@ -1,5 +1,7 @@
 //Importação do Express
 const express = require('express');
+//Importação do cors
+const cors = require('cors');
 
 //Criar a aplicação
 const app = express();
@@ -7,9 +9,8 @@ const app = express();
 //Permitir trabalhar com JSON
 app.use(express.json());
 
-
 //Porta onde a API vai rodar
-const PORT = 3001;
+const PORT = 3000;
 
 //Inicia o servidor
 app.listen(PORT,() => {
@@ -27,7 +28,13 @@ app.get('/',(require, response) => {
     response.send("TESTE")
 })
 
-app.get('/usuarios',(require, response) => {
+app.get('/usuarios',(require, response) =>{
     response.json(usuarios);
 })
 
+app.get('/usuarios/:id', (require, response) =>{
+    const id = require.params.id
+    const usuario = usuarios.find(u => u.id == id)
+
+    response.json(usuario)
+})
