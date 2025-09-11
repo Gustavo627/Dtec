@@ -73,3 +73,31 @@ app.post('/usuarios', (req, res) => {
     usuarios.push(novoUsuario);
     res.status(201).json(novoUsuario)
 })
+
+app.put('/usuarios/:id', (req, res) => {
+    const id = req.params.id
+    const nome = req.body.nome
+    const idade = req.body.idade
+
+    const usuario = usuarios.find (u => u.id == id)
+
+    if(!usuario) {
+        return res.status(404).json({mensagem: "Usuário não encontrado"})
+    }
+
+    usuario.nome = nome || usuario.nome
+    usuario.idade = idade || usuario.idade
+    res.json(usuario)
+})
+
+app.get('/usuarios/idade/:idade', (req, res) => {
+    const idade = req.params.idade
+    const resultados = usuarios.filter(u => u.idade == idade)
+
+    if(resultados.length > 0){
+        res.json(resultados)
+    }else{
+        res.status(404).json({mensagem: "Nenhum usuário encontrado com essa idade"})
+    }
+})
+
