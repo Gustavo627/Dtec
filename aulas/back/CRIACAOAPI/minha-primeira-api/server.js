@@ -8,6 +8,8 @@ const app = express();
 
 //Permitir trabalhar com JSON
 app.use(express.json());
+//Permitir trabalhar com CORS
+app.use(cors());
 
 //Porta onde a API vai rodar
 const PORT = 3000;
@@ -64,8 +66,11 @@ app.delete('/usuarios/:id', (req, res) => {
 })
 
 app.post('/usuarios', (req, res) => {
+    const ultimoID = usuarios.reduce(max, usuario => Math.max(max, usuario.id), 0);
+
+
     const novoUsuario = {
-        id: usuarios.length + 1,
+        id: usuarios.ultimoID + 1,
         nome: req.body.nome,
         idade: req.body.idade
     };
