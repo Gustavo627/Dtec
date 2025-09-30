@@ -12,7 +12,7 @@
         <p>Clique em "Listar Usuários" para carregar os dados</p>
 
         <div class="header-buttons">
-            <button id="btnListUsers">Listar Usuários</button>
+            <button id="btnListUsers" onclick="fetchAndRenderUsers()">Listar Usuários</button>
         </div>
 
     <div id="user-cards-container" class="cards-grid">
@@ -33,7 +33,7 @@
     <form id="addUserForm" class="add-user-form">
         <input type="text" id="addname" placeholder="Nome do Usuário" required>
         <input type="number" id="addAge" placeholder="Idade do Usuário" required>
-        <button type="submit">Adicionar Usuário</button>    
+        <button type="submit" onclick="">Adicionar Usuário</button>    
     </form>
     </div>
 
@@ -48,7 +48,7 @@
                 <input type="number" id="editage" required>
                 <div class="çmodal-buttons">
                     <button type="submit" class="btn-save">Salvar</button>
-                    <button type="button" class="btn-cancel" id="btnCancelEdit">Cancelar</button>
+                    <button type="button" class="btn-cancel" id="btnCancelEdit" onclick="editUser()">Cancelar</button>
                 </div>
             </form>
         </div>

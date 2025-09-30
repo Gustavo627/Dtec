@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h2>TESTE</h2>
+
+    <div class="header-buttons">
+        <button id="btnListWishs" onclick="fetchAndRenderWishes()">Listar Usuários</button>
+    </div>
+
+    <div id="WishCardsContainer" class="cards-grid">
+        <div class="wish-card">
+            <div class="wish-info">
+                <p><strong>ID:</strong>10</p>
+                <p><strong>Nome:</strong>TESTE</p>
+                <p><strong>Preço:</strong>30,00R$</p>
+            </div>
+            <div class="card-buttons">
+                <button class="btn-edit">Editar</button>
+                <button class="btn-delete">Excluir</button>
+            </div>
+        </div>
+        <div id="addWishForm"></div>
+        <div id="editWishForm"></div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
