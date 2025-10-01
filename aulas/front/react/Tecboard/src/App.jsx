@@ -1,19 +1,29 @@
 
 import './App.css'
+import { FormularioDeEvento } from "./assets/componentes/FormularioDeEvento";
 
-//function no React é Commponente
-function FormularioDeEvento() {
+function Label ({children, htmlFor}) {
   return (
-    <form className="form-evento">
-      <h2>Preencha para criar um evento:</h2>
-      <fieldset>
-        <label htmlFor="">Qual é o nome do evento?</label>
+    <label htmlFor={htmlFor}>
+      {children}
+    </label>
 
-        <input type="text" id="nome" placeholder="Sumer dev hits"></input>
-      </fieldset>
-    </form>
   )
 }
+function CampoDeFormulario({children}) {
+  return (
+    <fieldset>
+      {children}
+    </fieldset>
+  )
+}
+//function no React e Componentes
+function TituloFormulario(props){
+  return (
+    <h2> {props.children} </h2>
+  )
+}
+
 function App() {
 
   return (
