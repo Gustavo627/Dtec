@@ -136,4 +136,4 @@ window.addEventListener('click', function (event) {
         editModal.style.display = 'none';
         clearForm(editForm);
     }
-});//Se o usuário clicar fora do modal ele é fechado.
+});//Se o usuário clicar fora do modal ele é fechado.  

@@ -77,4 +77,4 @@ window.addEventListener('click', (e) => {
     }
 });//Se o usuário clicar fora do modal, ele fecha.
 
-renderProducts();
+renderProducts(); 
