@@ -1,17 +1,18 @@
 import '../FormularioDeEvento/FormularioDeEvento.css'
-import { CampoDeFormulario } from "module";
+import { CampoDeEntrada } from "../CampoDeEntrada";
+import { CampoDeFormulario } from "../CampoDeFormulario";
+import { LabelDeFormulario } from "../LabelDeFormulario";
+import { TituloDeFormulario } from "../TituloDeFormulario";
 
 export function FormularioDeEvento() {
     return (
       <form className="form-evento">
-        <TituloFormulario>
+        <TituloDeFormulario>
           Preencha para criar um evento.
-        </TituloFormulario>
+        </TituloDeFormulario>
         <CampoDeFormulario>
-
-          <Label htmlFor="">Qual é o nome do evento?</Label>
-  
-          <input type="text" id="nome" placeholder="Sumer dev hits"></input>
+          <LabelDeFormulario htmlFor="">Qual é o nome do evento?</LabelDeFormulario>
+          <CampoDeEntrada type="text" id="nome" placeholder="Sumer dev hits"></CampoDeEntrada>
         </CampoDeFormulario>
 
       </form>

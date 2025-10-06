@@ -2,7 +2,7 @@
 import './App.css'
 import { FormularioDeEvento } from "./assets/componentes/FormularioDeEvento";
 
-function Label ({children, htmlFor}) {
+function LabelDeFormulario ({children, htmlFor}) {
   return (
     <label htmlFor={htmlFor}>
       {children}
@@ -18,7 +18,7 @@ function CampoDeFormulario({children}) {
   )
 }
 //function no React e Componentes
-function TituloFormulario(props){
+function TituloDeFormulario(props){
   return (
     <h2> {props.children} </h2>
   )
