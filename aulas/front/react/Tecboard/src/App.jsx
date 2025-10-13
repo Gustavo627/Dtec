@@ -1,7 +1,17 @@
 
 import './App.css'
 import { FormularioDeEvento } from "./assets/componentes/FormularioDeEvento";
+import { Tema } from "./assets/Componentes/Tema"
 
+//function no React e Componentes
+function App()  {
+const temas =[
+    {
+      id: 1,
+      nome: a  
+    }
+]
+}
 function LabelDeFormulario ({children, htmlFor}) {
   return (
     <label htmlFor={htmlFor}>
@@ -36,6 +46,8 @@ function App() {
         <img src='/banner.png' alt='banner principal' />
       </section>
       <FormularioDeEvento></FormularioDeEvento>
+      <section>
+      </section>
     </main>
   )
 }
