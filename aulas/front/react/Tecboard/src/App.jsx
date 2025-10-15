@@ -3,6 +3,7 @@ import './App.css'
 import { Banner } from './assets/componentes/Banner'
 import { FormularioDeEvento } from "./assets/componentes/FormularioDeEvento";
 import { Tema } from "./assets/componentes/Tema"
+import { CardEvento }  from './assets/componentes/CardEvento';
 
 //function no React e Componentes
 function App() {
@@ -10,12 +11,12 @@ function App() {
     {
       id: 1,
       nome: 'front-end'
-    }
+    },
   ]
 
   const eventos = [
     {
-      capa: 'http://..',
+      capa: 'https://raw.githubusercontent.com/viniciosneves/tecboard-assets/refs/heads/main/imagem_1.png',
       tema: temas[0],
       data: new Date(),
       titulo: 'Mulheres no Front'
@@ -56,7 +57,7 @@ function App() {
 
       <Banner />
 
-      <FormularioDeEvento></FormularioDeEvento>
+      <FormularioDeEvento temas = {temas} />
 
       {temas.map(function (item) {
         return (
