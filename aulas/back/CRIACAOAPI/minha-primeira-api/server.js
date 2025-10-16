@@ -1,137 +1,156 @@
-//Importa o dotenv no início para carregar variáveis
+//CARREGAR VARIÁVEIS DE AMBIENTE
 require('dotenv').config()
-//Importação do Express
+
+//Importando o express
 const express = require('express');
-//Importação do cors
 const cors = require('cors');
-//Iniciar o  Mongoose pacote MONGODB
-const mongoose= require('mongoose')
+const mongoose = require('mongoose');
 
-const mongoURI = process.env.MONGO_URI
-const PORT = process.env.PORT || 3000   
+const PORT = process.env.PORT || 3000;
+const mongoURI = process.env.MONGO_URI;
 
-
+//CONEXÃO MONGODB
 mongoose.connect(mongoURI)
-    .then(() => console.log("Conectado ao MongoDB"))
-    .catch((error) => console.error("Erro ao conectar ao MongoDB", err));
+  .then(() => console.log("Conectado ao MongoDb Atlas"))
+  .catch(error => {
+    console.error("Falha na Conexão ao MongoDB",error.message);
+    process.exit(1);
+  })
 
-const usuarioSchema = new mongoose.Schema({
-    nome: {type: String, reqired: true},
+//estrutura do documento SCHEMA 
+const usuarioSchema = new mongoose.Schema(
+  {
+    nome: {type: String, required: true},
     idade: {type: Number, required: true}
-}, {timestamps: true})
+  }, {timestamps: true}
+);
 
-//Modelo collection
-const Usuario = mongoose.model('Usuario', usuarioSchema);
+//Modelo e Collection
+const Usuario = mongoose.model('Usuario', usuarioSchema)
 
-//Criar a aplicação
-const app = express();
 
-//Permitir trabalhar com JSON
-app.use(express.json());
-//Permitir trabalhar com CORS
-app.use(cors());
+//Criando minha aplicação
+const app = express()
 
-//Inicia o servidor
-app.listen(PORT,() => {
-    console.log(`Servidor rodando na porta ${PORT}`);
+//Permitir trabalhar com json
+app.use(express.json())
+app.use(cors())
+
+
+
+
+
+app.get('/',(req,res) => {
+  res.send("PÁGINA INICIAL")
 })
 
-app.get('/',(require, response) => {
-    response.send("TESTE")
-})
 
-app.get('/usuarios', async (request, response) =>{
-    try{
-        const usuarios = await Usuario.find({});
-        response.json(usuarios)
+app.get('/usuarios',async (req,res) => {
+    try {
+      const usuarios = await Usuario.find({});
+      res.json(usuarios);
     } catch (error) {
-        response.status(500).json({mensagem: "Erro ao buscar usuários"})
+      res.status(500).json({mensagem: "Erro ao buscar usuários",erro: error.message})
     }
 })
 
+app.get('/usuarios/:id', async (req, res) => {
+    try {
+      const id = req.params.id;
+      const usuario = await Usuario.findById(id);
 
-app.get('/usuarios/:id', async (request, res) =>{
-    const id = request.params.id
-    try{
-        const id = request.params.id
-        const usuario = await Usuario.findById(id);
-
-        if(usuario){
-            res.json(usuario)
-        }else{
-            res.status(404).json({mensagem: "Usuário não encontrado"})
-        }
+      if(usuario){
+        res.json(usuario)
+      }else{
+        res.status(404).json({mensagem: "Usuário Não encontrado"})
+      }
     } catch (error) {
-        res.status(500).json({mensagem: "Erro de servidor", erro: error.message})
+      res.status(400).json({mensagem: "Erro de Servidor", erro: error.message})
     }
 })
 
-app.get('/usuarios/nome/:nome', async (req, res) => {
-    try{
-        const buscaNome = req.params.nome
-        const resultados = await Usuario.find({
-            nome: { $regex: buscaNome, $options: 'i'}
-        });
-        if(resultados > 0){
-            res.json(resultados);
-        }else{
-            res.status(404).json({mensagem: "Nenhum usuário encontrado com esse nome"})
-        }
-    }catch(error) {
-        console.error("Erro na busca", error);
-        res.status(500).json({mensagem: "Erro no servidor", erro: error.message}) 
+app.get('/usuarios/nome/:nome', async (req,res) => {
+  try{
+    const buscaNome = req.params.nome;
+    const resultados = await Usuario.find({
+      nome: {$regex: buscaNome, $options: 'i'}
+    });
+    if (resultados.length > 0) {
+      res.json(resultados);
+    }else {
+      res.status(404).json({mensagem: "Usuário Não Encontrado"})
     }
+  } catch (error) {
+    console.error("Erro na busca", error);
+    res.status(500).json({mensagem: "Erro no servidor", erro: error.message})
+  }
+    
 })
 
-app.delete('/usuarios/:id', (req, res) => {
-    const id = req.params.id
-    usuarios = usuarios.filter(u => u.id != id);
-
-    res.json({mensagem: "Usuário removido com sucesso"})
+app.get('/usuarios/idade/:idade', async (req,res) => {
+  try{
+    const buscaIdade = req.params.idade;
+    const resultados = await Usuario.find({
+      idade: buscaIdade
+    });
+    if (resultados.length > 0) {
+      res.json(resultados);
+    }else {
+      res.status(404).json({mensagem: "Usuário Não Encontrado"})
+    }
+  } catch (error) {
+    console.error("Erro na busca", error);
+    res.status(500).json({mensagem: "Erro no servidor", erro: error.message})
+  }
 })
 
-app.post('/usuarios', (req, res) => {
-    const ultimoID = usuarios.reduce(max, usuario => Math.max(max, usuario.id), 0);
+app.delete('/usuarios/:id', async (req, res) => {
+  try {
+    const id = req.params.id;
+    const usuarioDeletado = await Usuario.findByIdAndDelete(id);
 
+    if(!usuarioDeletado) {
+      return res.status(404).json({mensagem: "Usuário Não Encontrado"})
+    }
+    res.json({mensagem: "Usuário deletado", usuario: usuarioDeletado});
+  }catch (error) {
+    res.status(400).json({mensagem: "Erro ao deletar", erro: error.message})
+  } 
+})
 
-    const novoUsuario = {
-        id: usuarios.ultimoID + 1,
+// A sua rota POST para criar um novo usuário
+app.post('/usuarios', async (req, res) => {
+    try {
+      const novoUsuario = await Usuario.create({
         nome: req.body.nome,
         idade: req.body.idade
-    };
-
-    usuarios.push(novoUsuario);
-    res.status(201).json(novoUsuario)
-})
-
-app.put('/usuarios/:id', async (req, res) => {
-    try{
-        const id = req.params.id;
-        const usuarioDeletado = await Usuario.findByIdAndUpdate(id);
-
-        if(usuarioDeletado){
-            return res.status(404).json({mensagem: "Usuário não encontrado"})
-        }
-        res.json({mensagem: "Usuário deletado.", usuario: usuarioDeletado})
+      });
+      res.status(201).json(novoUsuario);
     }catch (error) {
-        res.status(400).json({mensagem: "Erro ao deletar", erro: error.message})
+      res.status(400).json({mensagem: "Dados Inválidos ou Erro ao salvar", erro: error.message})
     }
+});
+
+app.put('/usuarios/:id', async (req,res) => {
+  try {
+    const id = req.params.id
+    const nome = req.body.nome
+    const idade = req.body.idade
+    const usuarioAtualizado = await Usuario.findByIdAndUpdate(
+      id,
+      {nome, idade},
+      {new: true, runValidators: true}
+    )
+    if (!usuarioAtualizado){
+      return res.status(404).json({mensagem: " Usuário Não Encontrado"})
+    }
+    res.json(usuarioAtualizado)
+  }catch{
+    res.status(400).json({mensagem: "Erro ao atualizar", erro: error.message})
+  }
 })
 
-app.get('/usuarios/idade/:idade', async (req, res) => {
-    try{
-        const buscaIdade = req.params.idade
-        const resultados = await Usuario.find({
-            nome: { $regex: buscaNome, $options: 'i'}
-        });
-        if(resultados > 0){
-            res.json(resultados);
-        }else{
-            res.status(404).json({mensagem: "Nenhum usuário encontrado com esse nome"})
-        }
-    }catch(error) {
-        console.error("Erro na busca", error);
-        res.status(500).json({mensagem: "Erro no servidor", erro: error.message}) 
-    }
+//Inicia o servidor
+app.listen(PORT, () => {
+    console.log(`Servidor na porta ${PORT}`)
 })
-

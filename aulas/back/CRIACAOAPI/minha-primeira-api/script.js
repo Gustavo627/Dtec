@@ -1,5 +1,4 @@
-//Criando uma constante com o endereço da API 
-const API_URL = "http://localhost:3000/usuarios";
+const API_URL = `http://localhost:3001/usuarios`;
 
 //Seleção de Elementos do HTML INICIAL
 const userCardsContainer = document.getElementById('user-cards-container');
@@ -11,8 +10,8 @@ const editModal = document.getElementById('editModal');
 const editUserForm = document.getElementById('editUserForm');
 const btnCancelEdit = document.getElementById('btnCancelEdit');
 const editIdInput = document.getElementById('editId');
-const editNameInput = document.getElementById('editName')
-const editAgeInput = document.getElementById('editAge')
+const editNameInput = document.getElementById('editName');
+const editAgeInput = document.getElementById('editAge');
 
 
 //CRIAÇÃO DE FUNÇÕES
@@ -23,9 +22,9 @@ function fetchAndRenderUsers() {
         //renderUsers() função que vai organizar as informações na tela
         .then(users => renderUsers(users))
         .catch(error => {
-            console.error("Erro ao buscar usuários", error);
-            userCardsContainer.innerHTML = `<p>Erro ao carregar usuários</p>`
-        })              
+            console.error("Erro ao buscar usuários:", error);
+            userCardsContainer.innerHTML = `<p>Erro ao carregar usuários</p>`;
+        }); 
 }
 
 //Função para adicionar um novo usuário
@@ -80,7 +79,6 @@ function renderUsers(users) {
         userCardsContainer.innerHTML = `<p>Nenhum usuário cadastrado</p>`
         return;
     }
-}
 
     users.forEach(user => {
         const userCard = document.createElement('div');
@@ -88,7 +86,7 @@ function renderUsers(users) {
 
         userCard.innerHTML = `
             <div class="user-info">
-                <p><strong>ID:</strong>${user.id}</p>
+                <p><strong>ID:</strong>${user._id.slice(0,5)}</p>
                 <p><strong>Nome:</strong>${user.nome}</p>
                 <p><strong>Idade:</strong>${user.idade}</p>
             </div>
@@ -97,37 +95,38 @@ function renderUsers(users) {
                 <button class="btn-delete">Excluir</button>
             </div>
         `;
-    })
 
         const editBtn = userCard.querySelector('.btn-edit');
-        const deletBtn = userCard.querySelector('.btn-delete');
+        const deleteBtn = userCard.querySelector('.btn-delete');
 
         editBtn.addEventListener('click', () => {
-            editIdInput.value = user.id;
+            editIdInput.value = user._id;
             editNameInput.value = user.nome;
             editAgeInput.value = user.idade;
             editModal.style.display = 'flex';
         })
 
-        deletBtn.addEventListener('click', () => {
-            if(confirm(`Tem certeza que deseja excluir u usuário? ${user.id}`)){
-                deleteUser(user.id)
+        deleteBtn.addEventListener('click', () => {
+            if(confirm(`Tem certeza que deseja excluir o usuário ${user._id.slice(0,5)}`)){
+                deleteUser(user._id)
             }
-            userCardsContainer.appendChild(userCard);
+        })
+        userCardsContainer.appendChild(userCard);
 
-         })
+    })
 
+}
 
-//Função botão para Listar Usuários
+//Função botão Listar  Usuários
 btnListUsers.addEventListener('click', fetchAndRenderUsers);
 
 addUserForm.addEventListener('submit', (e) => {
-    e.preventDefault();//Impede que recarregue a página
+    e.preventDefault();//Impede que o submit recarregue a página
 
     const newUserName = document.getElementById('addName').value;
     const newUserAge = document.getElementById('addAge').value;
-
-    addUser({nome: newUserAge, idade: newUserAge});
+        
+    addUser({nome: newUserName, idade: newUserAge});
 })
 
 editUserForm.addEventListener('submit', (e) => {
@@ -135,18 +134,18 @@ editUserForm.addEventListener('submit', (e) => {
 
     const userId = editIdInput.value;
     const newName = editNameInput.value;
-    const newAge = parseInt(editAgeInput.value);
+    const newAge = editAgeInput.value;
 
     editUser(userId, {nome: newName, idade: newAge});
 })
 
 btnCancelEdit.addEventListener('click', () => {
-    editModal.style.display = 'none';
+    editModal.style.display = 'none'
 })
 
 window.addEventListener('click', (e) => {
     if(e.target === editModal) {
-        editModal.style.display = 'none';
+        editModal.style.display = 'none'
     }
 })
 
