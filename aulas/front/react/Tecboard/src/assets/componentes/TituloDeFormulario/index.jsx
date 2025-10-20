@@ -1,7 +1,7 @@
-import '../TituloDeFormulario/TituloDeFormulario.css'
+import './TituloDeFormulario.css'
 
-export function TituloDeFormulario(props) {
-    return (
-        <h2> {props.children} </h2>
-      )
+export function TituloFormulario(props) {
+  return (
+    <h2> {props.children} </h2>
+  )
 }

@@ -1,6 +1,6 @@
-import './cardevento.css'
+import './CardEvento.css'
 
-export function CardEvento(evento) {
+export function CardEvento({ evento }) {
     return (
         <div className='card-evento'>
             <img src={evento.capa} alt={evento.titulo} />
@@ -10,8 +10,8 @@ export function CardEvento(evento) {
                     {evento.tema.nome}
                 </p>
                 <p className='data'>
-                    {evento.data.toLocaleDateString('pt-br')}
-                </p>{/*pega a data atual no local padrão: pt-br*/}
+                    {evento.data.toLocaleDateString('pt-BR')}
+                </p>{/* Pega a data atual no local padrão: pt-BR */}
                 <h4 className='titulo'>
                     {evento.titulo}
                 </h4>

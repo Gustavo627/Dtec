@@ -1,5 +1,9 @@
-import './CampoDeEntrada.css'
+import './CampoDeFormulario.css'
 
-export function CampoDeEntrada(props) {
-    return <input {...props} className='campo-entrada-form'/>
-  }
+export function CampoDeFormulario({ children }) {
+  return (
+    <fieldset className='campo-form'>
+      {children}
+    </fieldset>
+  )
+}

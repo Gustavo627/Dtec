@@ -25,7 +25,7 @@
     width: 282px;
     color: white;
 }
-.card-evento p, .card-evento h4{
+.card-evento p, .card-evento h4 {
     margin: 0;
 }
 .card-evento .data{
@@ -34,8 +34,8 @@
     line-height: 120%;
 }
 .card-evento .titulo{
-    font-family: "Orbitron", sans-serif;
-    font: 700;
-    font-size: 25px;
-    line-height: 125% ;
+   font-family: "Orbitron", sans-serif;
+   font: 700;
+   font-size: 25px;
+   line-height: 125%; 
 }

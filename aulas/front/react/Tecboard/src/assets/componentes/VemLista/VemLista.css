@@ -5,8 +5,8 @@
     font-weight: 400;
     font-size: 16px;
     line-height: 120%;
-    color: rbg(68, 68, 68);
-    padding: 8px;
+    color: rgb(68, 68, 68);
+    padding: 8px 16px;
 }
 .option{
     color: black;

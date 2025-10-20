@@ -1,33 +1,52 @@
-import '../FormularioDeEvento/FormularioDeEvento.css'
+import './FormularioDeEvento.css'
 import { CampoDeEntrada } from "../CampoDeEntrada";
-import { CampoDeFormulario } from "../CampoDeFormulario";
-import { LabelDeFormulario } from "../LabelDeFormulario";
-import { TituloDeFormulario } from "../TituloDeFormulario";
+import { CampoDeFormulario } from "../CampoDeFormulario"
+import { Label } from "../Label";
+import { TituloFormulario } from "../TituloDeFormulario";
 import { VemLista } from "../VemLista";
-import { Botao } from "../BotaoDeFormulario"
+import { Botao } from '../Botão';
 
-export function FormularioDeEvento() {
+export function FormularioDeEvento( {temas, aoSubmeter} ) {
+  function aoFormSubmetido( FormData ) {
+    console.log('vamos adicionar um evento')
+
+    const evento ={
+      capa: FormData.get('capa'),
+      tema: temas.find(function (item) {
+        return item.id == FormData.get('tema')
+      }),
+      data: new Date(FormData.get('dataEvento')),
+      titulo: FormData.get("nomeEvento")
+    }
+    aoSubmeter(evento)
+  }
   return (
-    <form className="form-evento">
-      <TituloDeFormulario>
-        Preencha para criar um evento.
-      </TituloDeFormulario>
+    <form className='form-evento'>
+      <TituloFormulario>
+        Preencha para criar um evento:
+      </TituloFormulario>
 
       <div className='campos'>
+
         <CampoDeFormulario>
-          <LabelDeFormulario htmlFor="">Qual é o nome do evento?</LabelDeFormulario>
-          <CampoDeEntrada type="text" id="nome" placeholder="Sumer dev hits"></CampoDeEntrada>
+          <Label htmlFor="nome">Qual é  o nome do evento?</Label>
+          <CampoDeEntrada type="text" id='nomeEvento' name='nomeEvento' placeholder='Sumer dev hits' />
         </CampoDeFormulario>
 
         <CampoDeFormulario>
-          <LabelDeFormulario htmlFor="">Qual é a data do evento?</LabelDeFormulario>
-          <CampoDeEntrada type="date" id="nome" placeholder='data do evento'></CampoDeEntrada>
+          <Label htmlFor="capa">Qual é  o endereço da imagem de capa?</Label>
+          <CampoDeEntrada type="text" id='capa' name='capa' placeholder='http://...' />
         </CampoDeFormulario>
 
         <CampoDeFormulario>
-          <LabelDeFormulario htmlFor="">Qual é o nome do evento?</LabelDeFormulario>
+          <Label htmlFor="dataEvento">Qual é a data do evento</Label>
+          <CampoDeEntrada type="date" id='dataEvento' name='dataEvento' placeholder='data do evento' />
+        </CampoDeFormulario>
 
-          <VemLista/> {/*Lista Suspensa*/}
+        <CampoDeFormulario>
+          <Label htmlFor="tema">Qual é  o tema do evento?</Label>
+
+          <VemLista name='tema' id='tema' itens={temas}/> {/* Lista Suspensa */}
         </CampoDeFormulario>
 
       </div>

@@ -1,76 +1,97 @@
 
 import './App.css'
-import { Banner } from './assets/componentes/Banner'
-import { FormularioDeEvento } from "./assets/componentes/FormularioDeEvento";
-import { Tema } from "./assets/componentes/Tema"
-import { CardEvento }  from './assets/componentes/CardEvento';
+import { Banner } from './assets/Componentes/Banner';
+import { FormularioDeEvento } from "./assets/Componentes/FormularioDeEvento";
+import { Tema } from './assets/componentes/Tema'
+import { CardEvento } from './assets/Componentes/CardEvento';
+import { useState } from 'react';
 
-//function no React e Componentes
+//function no React é Comp'onente
 function App() {
   const temas = [
     {
       id: 1,
       nome: 'front-end'
     },
-  ]
+    {
+      id: 2,
+      nome: 'back-end'
+    },
+    {
+      id: 3,
+      nome: 'devops'
+    },
+    {
+      id: 4,
+      nome: 'inteligência artificial'
+    },
+    {
+      id: 5,
+      nome: 'data science'
+    },
+    {
+      id: 6,
+      nome: 'cloud'
+    }
+  ]}
 
-  const eventos = [
+  const [eventos,  setEventos] = useState ( [
     {
       capa: 'https://raw.githubusercontent.com/viniciosneves/tecboard-assets/refs/heads/main/imagem_1.png',
       tema: temas[0],
       data: new Date(),
       titulo: 'Mulheres no Front'
     }
-  ]
+  ])
+
+  function adicionarEvento(evento) {
+    setEventos([...eventos, evento])
+    /*eventos.push(evento)
+    console.log('eventos =>', eventos)*/
+    return (
+      <main>
+        <header>
+          <img src="/logo.png" alt="Logo" />
+        </header>
+
+        <Banner />
+
+        <FormularioDeEvento temas={temas} aoSubmeter={adicionarEvento} />
+
+        {temas.map(function (item) {
+          return (
+            <section key={item.id}>
+              <Tema tema={item} />
+              <CardEvento evento={eventos[0]} />
+            </section>
+          )
+        })}
+
+        {/* 
 
 
-}
-function LabelDeFormulario({ children, htmlFor }) {
-  return (
-    <label htmlFor={htmlFor}>
-      {children}
-    </label>
 
-  )
-}
-function CampoDeFormulario({ children }) {
-  return (
-    <fieldset>
-      {children}
-    </fieldset>
-  )
-}
-//function no React e Componentes
-function TituloDeFormulario(props) {
-  return (
-    <h2> {props.children} </h2>
-  )
-}
-
-function App() {
-
-  return (
-    <main>
-      <header>
-        <img src='/logo.png' alt='logo' />
-      </header>
-
-      <Banner />
-
-      <FormularioDeEvento temas = {temas} />
-
-      {temas.map(function (item) {
-        return (
-          <section key={item.id}>
-            <Tema tema={item} />
-            <CardEvento evento={eventos[0]}/>
-          </section>
-        )
-      })}
       <section>
+        <Tema tema={temas[1]} />
       </section>
-    </main>
-  )
-}
 
-export default App
+      <section>
+        <Tema tema={temas[2]} />
+      </section>
+
+      <section>
+        <Tema tema={temas[3]} />
+      </section>
+
+      <section>
+        <Tema tema={temas[4]} />
+      </section>
+ */}
+
+
+      </main>
+
+    )
+  }
+
+  export default App

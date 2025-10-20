@@ -1,4 +1,4 @@
-import '../LabelDeFormulario/LabelDeFormulario.css'
+import './Label.css'
 
 export function LabelDeFormulario ({children, htmlFor}) {
     return (
