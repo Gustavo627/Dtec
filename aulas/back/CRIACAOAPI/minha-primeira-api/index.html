@@ -1,43 +1,51 @@
 <!DOCTYPE html>
 <html lang="pt-bt">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Gerenciamento de Usuários</title>
     <link rel="stylesheet" href="styles.css">
 </head>
+
 <body>
-    <div class="container">      
+    <div class="container">
         <h1>Gerenciamento de Usuários</h1>
         <p>Clique em "Listar Usuários" para carregar os dados</p>
 
         <div class="header-buttons">
+            <button id="btnRegisterModal" class="btn-action">Criar Conta</button>
+            <button id="btnLoginModal" class="btn-action">Login</button>
+            <button id="btnListUsers">Listar Usuários</button>
+            <p id="adminStatusAuth" class="auth-status"></p>
+
+
             <button id="btnListUsers" onclick="fetchAndRenderUsers()">Listar Usuários</button>
         </div>
 
-    <div id="user-cards-container" class="cards-grid">
-        <div class="user-card">
-            <div class="user-info">
-                <p><strong>ID:</strong>10</p>
-                <p><strong>Nome:</strong>TESTE</p>
-                <p><strong>Idade:</strong>30</p>
-            </div>
-            <div class="card-buttons">
-                <button class="btn-edit">Editar</button>
-                <button class="btn-delete">Excluir</button>
+        <div id="user-cards-container" class="cards-grid">
+            <div class="user-card">
+                <div class="user-info">
+                    <p><strong>ID:</strong>10</p>
+                    <p><strong>Nome:</strong>TESTE</p>
+                    <p><strong>Idade:</strong>30</p>
+                </div>
+                <div class="card-buttons">
+                    <button class="btn-edit">Editar</button>
+                    <button class="btn-delete">Excluir</button>
+                </div>
             </div>
         </div>
+
+        <h2>Adicionar Novo Usuário</h2>
+        <form id="addUserForm" class="add-user-form">
+            <input type="text" id="addName" placeholder="Nome" required>
+            <input type="number" id="addAge" placeholder="Idade do Usuário" required>
+            <button type="submit" onclick="">Adicionar Usuário</button>
+        </form>
     </div>
 
-    <h2>Adicionar Novo Usuário</h2>
-    <form id="addUserForm" class="add-user-form">
-        <input type="text" id="addName" placeholder="Nome do Usuário" required>
-        <input type="number" id="addAge" placeholder="Idade do Usuário" required>
-        <button type="submit" onclick="">Adicionar Usuário</button>    
-    </form>
-    </div>
-
-    <div id="editModal"class="modal">
+    <div id="editModal" class="modal">
         <div class="modal-content">
             <h2>Editar Usuário</h2>
             <form id="editUserForm">
@@ -53,6 +61,36 @@
             </form>
         </div>
     </div>
+
+    <div id="loginModal" class="modal">
+    <div class="modal-content">
+        <h2>Login</h2>
+        <form id="adminLoginForm">
+            <label for="adminUsername">Nome de Usuário:</label>
+            <input type="text" id="adminUsernamer" required>
+            <label for="adminPassword">Senha:</label>
+            <input type="text" id="adminPassword" required>
+        </form>
+    </div>
+    </div>
+
+    <div id="registerModal" class="modal">
+        <div class="modal-content">
+            <h2>Criar Conta</h2>
+            <form id="adminRegisterForm">
+                <p id="adminRegisterStatus" class="auth-status"></p>
+                <label for="">Nome de Usuário:</label>
+                <input type="text" id="regUsername" required>
+                <label for="regPassword">Senha:</label>
+                <input type="password" id="regPassword" required>
+                <div class="modal-buttons">
+                    <button type="submit" class="btn-save">Criar</button>
+                    <button type="button" class="btn-cancel" id="btnCancelRegister"></button>
+                </div>
+            </form>
+        </div>
+    </div>
     <script src="script.js"></script>
 </body>
+
 </html>
