@@ -33,37 +33,61 @@ function App() {
       id: 6,
       nome: 'cloud'
     }
-  ]}
+  ]
+}
 
-  const [eventos,  setEventos] = useState ( [
-    {
-      capa: 'https://raw.githubusercontent.com/viniciosneves/tecboard-assets/refs/heads/main/imagem_1.png',
-      tema: temas[0],
-      data: new Date(),
-      titulo: 'Mulheres no Front'
-    }
-  ])
+const [eventos, setEventos] = useState([
+  {
+    capa: 'https://raw.githubusercontent.com/viniciosneves/tecboard-assets/refs/heads/main/imagem_1.png',
+    tema: temas[0],
+    data: new Date(),
+    titulo: 'Mulheres no Front'
+  }
+])
 
-  function adicionarEvento(evento) {
-    setEventos([...eventos, evento])
-    /*eventos.push(evento)
-    console.log('eventos =>', eventos)*/
-    return (
-      <main>
-        <header>
-          <img src="/logo.png" alt="Logo" />
-        </header>
+function adicionarEvento(evento) {
+  setEventos([...eventos, evento])
+  /*eventos.push(evento)
+  console.log('eventos =>', eventos)*/
+  return (
+    <main>
+      <header>
+        <img src="/logo.png" alt="Logo" />
+      </header>
 
-        <Banner />
+      <Banner />
 
-        <FormularioDeEvento temas={temas} aoSubmeter={adicionarEvento} />
+      <FormularioDeEvento temas={temas} aoSubmeter={adicionarEvento} />
 
-        {temas.map(function (item) {
+      <section className="container">
+
+        {temas.map(function (tema) {
+          if (!eventos.some(function (evento) {
+            return evento.tema.id == tema.id
+          })) {
+            return null
+          }
+
+          {}
+          
           return (
             <section key={item.id}>
               <Tema tema={item} />
+              <div className="eventos">
+                {eventos.filter(function(evento) {
+                  return evento.tema.id == tema.id
+                })
+                .map(function (item,index) {
+                  return(
+                    <CardEvento evento={item} key={index} />
+                  )
+                }
+                )}
+              </div>
+              
               <CardEvento evento={eventos[0]} />
             </section>
+
           )
         })}
 
@@ -89,8 +113,8 @@ function App() {
  */}
 
 
-      </main>
+    </main>
 
-    )
-  }
-  export default App
+  )
+}
+export default App

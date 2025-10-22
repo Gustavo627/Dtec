@@ -1,10 +1,10 @@
-import './FormularioDeEvento.css'
+import '../FormularioDeEvento/FormularioDeEvento.css'
 import { CampoDeEntrada } from "../CampoDeEntrada";
 import { CampoDeFormulario } from "../CampoDeFormulario"
-import { Label } from "../Label";
+import { Label } from "../LabelDeFormulario";
 import { TituloFormulario } from "../TituloDeFormulario";
 import { VemLista } from "../VemLista";
-import { Botao } from '../Botão';
+import { Botao } from "../Botao";
 
 export function FormularioDeEvento( {temas, aoSubmeter} ) {
   function aoFormSubmetido( FormData ) {
