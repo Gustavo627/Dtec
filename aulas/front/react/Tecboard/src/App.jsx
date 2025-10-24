@@ -1,12 +1,13 @@
 
+
 import './App.css'
 import { Banner } from './assets/Componentes/Banner';
 import { FormularioDeEvento } from "./assets/Componentes/FormularioDeEvento";
-import { Tema } from './assets/componentes/Tema'
+import { Tema } from "./assets/Componentes/Tema";
 import { CardEvento } from './assets/Componentes/CardEvento';
 import { useState } from 'react';
 
-//function no React é Comp'onente
+//function no React é Componente
 function App() {
   const temas = [
     {
@@ -33,88 +34,71 @@ function App() {
       id: 6,
       nome: 'cloud'
     }
+
   ]
-}
+  /* Abaixo vamos utiliar o useState que cuida do nosso estado, ele retorna para nós um array de duas posições */
 
-const [eventos, setEventos] = useState([
-  {
-    capa: 'https://raw.githubusercontent.com/viniciosneves/tecboard-assets/refs/heads/main/imagem_1.png',
-    tema: temas[0],
-    data: new Date(),
-    titulo: 'Mulheres no Front'
+  const [eventos, setEventos] = useState([
+    {
+      capa: 'https://raw.githubusercontent.com/viniciosneves/tecboard-assets/refs/heads/main/imagem_1.png',
+      tema: temas[0],
+      data: new Date(),
+      titulo: 'Mulheres no Front'
+    }
+  ])
+
+  function adicionarEvento(evento) {
+    setEventos([...eventos, evento])
+    /* eventos.push(evento)
+    console.log('eventos =>', eventos) */
   }
-])
-
-function adicionarEvento(evento) {
-  setEventos([...eventos, evento])
-  /*eventos.push(evento)
-  console.log('eventos =>', eventos)*/
   return (
     <main>
       <header>
         <img src="/logo.png" alt="Logo" />
       </header>
-
       <Banner />
-
       <FormularioDeEvento temas={temas} aoSubmeter={adicionarEvento} />
 
       <section className="container">
 
         {temas.map(function (tema) {
-          if (!eventos.some(function (evento) {
+          if (!eventos.some(function(evento) {
             return evento.tema.id == tema.id
-          })) {
-            return null
-          }
-
-          {}
-          
-          return (
-            <section key={item.id}>
-              <Tema tema={item} />
+          })) 
+          {
+          return null
+        } 
+               
+        
+        return (
+            <section key={tema.id}>
+              <Tema tema={tema} />
               <div className="eventos">
+
                 {eventos.filter(function(evento) {
                   return evento.tema.id == tema.id
                 })
-                .map(function (item,index) {
-                  return(
-                    <CardEvento evento={item} key={index} />
+                
+                .map(function (evento, index) {
+                  return (
+                    <CardEvento evento={evento} key={index} />
                   )
                 }
                 )}
               </div>
-              
-              <CardEvento evento={eventos[0]} />
             </section>
-
           )
         })}
 
-        {/* 
-
-
-
-      <section>
-        <Tema tema={temas[1]} />
       </section>
-
-      <section>
-        <Tema tema={temas[2]} />
-      </section>
-
-      <section>
-        <Tema tema={temas[3]} />
-      </section>
-
-      <section>
-        <Tema tema={temas[4]} />
-      </section>
- */}
-
 
     </main>
 
   )
 }
+
 export default App
+
+
+

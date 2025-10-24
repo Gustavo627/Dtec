@@ -27,7 +27,7 @@ export function FormularioDeEvento( {temas, aoSubmeter} ) {
       </TituloFormulario>
 
       <div className='campos'>
-
+/
         <CampoDeFormulario>
           <Label htmlFor="nome">Qual é  o nome do evento?</Label>
           <CampoDeEntrada type="text" id='nomeEvento' name='nomeEvento' placeholder='Sumer dev hits' />
