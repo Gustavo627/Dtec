@@ -11,7 +11,7 @@ body {
     background-color: #fff;
     padding: 30px;
     border-radius: 10px;
-    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 4px 15px rgba(0,0,0,0.1);
 }
 
 h1, h2 {
@@ -21,7 +21,7 @@ h1, h2 {
     margin-bottom: 25px;
 }
 
-/*Formulário  Adição de Usuários*/
+/*Formulario Adição de Usuários */
 .add-user-form {
     display: flex;
     gap: 10px;
@@ -62,19 +62,19 @@ h1, h2 {
     border: 1px solid #ddd;
     border-radius: 8px;
     padding: 20px;
-    box-shadow: 0  2px 5px rgba(0, 0, 0, 0.05);
+    box-shadow: 0 2px 5px rgba(0,0,0,0.05);
     display: flex;
     flex-direction: column;
     justify-content: space-between;
 }
 
-.user-info {
+.user-info{
     font-size: 1.1em;
     margin-bottom: 15px;
 }
 
 .user-info strong {
-    color: #555;
+    color: #555
 }
 
 .card-buttons {
@@ -108,15 +108,18 @@ h1, h2 {
     background-color: #c82333;
 }
 
+
+/*ESTILIZAÇÃO DO MODAL*/
+
 .modal {
-    display: none;
+    display:none; /*inicia o modal oculto*/
     position: fixed;
     z-index: 1;
-    left: 0;
-    right: 0;
+    left:0;
+    top:0;
     width: 100%;
     height: 100%;
-    background-color: rgba(0, 0, 0, 06);
+    background-color: rgba(0,0,0,0.6);
     justify-content: center;
     align-items: center;
 }
@@ -125,7 +128,9 @@ h1, h2 {
     background-color: #fff;
     padding: 30px;
     border-radius: 10px;
-    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+    box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+    width: 90%;
+    max-width: 450px;
 }
 
 .modal-content h2 {
@@ -137,7 +142,7 @@ h1, h2 {
     display: block;
     margin-top: 15px;
     font-weight: bold;
-    color: #555;
+    color: #555
 }
 
 .modal-content form input {
@@ -159,15 +164,17 @@ h1, h2 {
 .btn-save {
     background-color: #28a745;
     color: white;
-    border: mone;
+    border:none;
+    border-radius: 5px;
     padding: 10px 20px;
-    cursor: pointer;
+    cursor:pointer;
 }
 
 .btn-cancel {
     background-color: #6c757d;
     color: white;
     border: none;
+    border-radius: 5px;
     padding: 10px 20px;
     cursor: pointer;
 }

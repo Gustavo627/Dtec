@@ -1,3 +1,4 @@
+
 const API_URL = `http://localhost:3001/usuarios`;
 
 //Seleção de Elementos do HTML INICIAL
@@ -10,8 +11,8 @@ const editModal = document.getElementById('editModal');
 const editUserForm = document.getElementById('editUserForm');
 const btnCancelEdit = document.getElementById('btnCancelEdit');
 const editIdInput = document.getElementById('editId');
-const editNameInput = document.getElementById('editName');
-const editAgeInput = document.getElementById('editAge');
+const editNameInput = document.getElementById('editName')
+const editAgeInput = document.getElementById('editAge')
 
 
 //CRIAÇÃO DE FUNÇÕES
@@ -22,9 +23,9 @@ function fetchAndRenderUsers() {
         //renderUsers() função que vai organizar as informações na tela
         .then(users => renderUsers(users))
         .catch(error => {
-            console.error("Erro ao buscar usuários:", error);
-            userCardsContainer.innerHTML = `<p>Erro ao carregar usuários</p>`;
-        }); 
+            console.error("Erro ao buscar usuários", error);
+            userCardsContainer.innerHTML = `<p>Erro ao carregar usuários</p>`
+        })              
 }
 
 //Função para adicionar um novo usuário
@@ -123,10 +124,10 @@ btnListUsers.addEventListener('click', fetchAndRenderUsers);
 addUserForm.addEventListener('submit', (e) => {
     e.preventDefault();//Impede que o submit recarregue a página
 
-    const newUserName = document.getElementById('addName').value;
+    const newUserName = document.getElementById('addName').value
     const newUserAge = document.getElementById('addAge').value;
-        
-    addUser({nome: newUserName, idade: newUserAge});
+
+    addUser({nome: newUserName, idade: newUserAge})
 })
 
 editUserForm.addEventListener('submit', (e) => {
