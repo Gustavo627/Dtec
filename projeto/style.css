@@ -1,0 +1,38 @@
+.body {
+    background-color: #F8F9FA;
+    font-family: Montserrat;
+    margin: 0%;
+}
+
+.inputs-info {
+    display: flex;
+    gap: 18px;
+}
+
+.inputs-ctt {
+    display: flex;
+    gap: 18px;
+}
+
+.inputs-loc {
+    display: flex;
+    gap: 18px;
+}
+
+.input-formmid{
+    width: 100%;
+}
+
+.end-buttons {
+    display: flex;
+}
+.button-cancel {
+    border: none;
+    border-radius: 5px;
+    background-color: lightgray;
+}
+.button-confirm {
+    border: none;
+    border-radius: 5px;
+    background-color: lightcoral;
+}

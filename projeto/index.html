@@ -4,29 +4,103 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-    <link rel="stylesheet" src="index.css">
+    <title>Adicione Seu Negócio</title>
+    
+    <link rel="stylesheet" href="style.css"> 
 </head>
 
-<body>
-    <h1>Adicione Seu Negócio</h1>
-    <h3>Cadastre seu negócio em nossa plataforma para alcançar mais clientes em sua comunidade e fortalecer a economia
-        local.</h3>
+<body class="body">
+    <form class="form-cadastro">
+        <h1>Adicione Seu Negócio</h1>
+        <h3>Cadastre seu negócio em nossa plataforma para alcançar mais clientes em sua comunidade e fortalecer a economia local.</h3>
 
-    <form class="forminfo">Informações Básicas
-        <h4>Comece com os detalhes principais do seu negócio.</h4>
-        <h4>Nome do Negócio</h4>
-        <input placeholder="Ex :Smash do Zé">
-        <h4>Cartegoria</h4>
-        <select class="input-com-opcoes" id="opcoes" name="opces">
-            <option value="cartegoria-1">Cartegoria 1</option>
-            <option value="cartegoria-2">Cartegoria 2</option>
-            <option value="cartegoria-3">Cartegoria 3</option>
-        </select>
-        <h4>Descrição do Negócio</h4>
-        <input type="text" size="46%" class="input-3" placeholder="Conte-nos mais sobre o seu negócio e o que ele oferece">
+        <div class="forminfo">
+            <h4>Informações Básicas</h4>
+            <h4>Comece com os detalhes principais do seu negócio.</h4>
+            
+            <div class="inputs-info">
+
+            <div class="negocio">
+            <h4><label for="nome-negocio">Nome do Negócio</label></h4>
+            <input type="text" id="nome-negocio" name="nome_negocio" placeholder="Ex :Smash do Zé">
+            </div>
+            
+            <div class="cartegoria">
+            <h4><label for="opcoes">Cartegoria</label></h4>
+            <select class="input-com-opcoes" id="opcoes" name="cartegoria">
+                <option value="cartegoria-1">Cartegoria 1</option>
+                <option value="cartegoria-2">Cartegoria 2</option>
+                <option value="cartegoria-3">Cartegoria 3</option>
+            </select>
+            </div>
+            
+            <div class="desc">
+            <h4><label for="descricao-negocio">Descrição do Negócio</label></h4>
+            <input type="text" id="descricao-negocio" name="descricao_negocio" class="input-3" placeholder="Conte-nos mais sobre o seu negócio e o que ele oferece">
+            </div>
+            </div>
+        </div>
 
 
+        <div class="formctt">
+            <h4>Informações de Contato</h4>
+            <h4>Como seus clientes podem entrar em contato?</h4>
+            
+            <div class="inputs-ctt">
+
+            <div class="telefone">
+            <h4><label for="telefone">Telefone</label></h4>
+            <input type="tel" id="telefone" name="telefone" placeholder="(00) 91234-5678">
+            </div>
+            
+            <div class="email">
+            <h4><label for="email">E-mail</label></h4>
+            <input type="email" id="email" name="email" placeholder="contato@seunegocio.com">
+            </div>
+            
+            <div class="website">
+            <h4><label for="website">Website (Opcional)</label></h4>
+            <input type="url" id="website" name="website" placeholder="https://www.seunegocio.com">
+            </div>
+            </div>
+        </div>
+
+
+        <div class="formloc">
+            <h4>Localização</h4>
+            <h4>Onde seu negócio está localizado?</h4>
+            
+            <div class="inputs-loc">
+            <div class="endereco">
+            <h4><label for="endereco">Endereço</label></h4>
+            <input type="text" id="endereco" name="endereco" placeholder="Rua das Flores, 123">
+            </div>
+            
+            <div class="bairro">
+            <h4><label for="bairro">Bairro</label></h4>
+            <input type="text" id="bairro" name="bairro" placeholder="Centro">
+            </div>
+            
+            <div class="cidade">
+            <h4><label for="cidade">Cidade</label></h4>
+            <input type="text" id="cidade" name="cidade" placeholder="Sua Cidade">
+            </div>
+            </div>
+        </div>
+
+
+        <div class="formmid">
+            <h4>Mídia</h4>
+            <h4>Adicione um logotipo e fotos para destacar seu negócio.</h4>
+            <input type="file" class="input-formmid">
+        </div>
+
+        
+        <div class="end-buttons">
+            <button type="button" class="button-cancel">Cancelar</button>
+            <button type="submit" class="button-confirm">Cadastrar Negócio</button>
+        </div>
+    </form>
 </body>
 
 </html>
