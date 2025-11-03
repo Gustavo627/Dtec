@@ -5,45 +5,54 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Adicione Seu Negócio</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&family=Orbitron:wght@400..900&family=Work+Sans:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
     
     <link rel="stylesheet" href="style.css"> 
 </head>
 
 <body class="body">
+    <div class="card-form">
     <form class="form-cadastro">
-        <h1>Adicione Seu Negócio</h1>
+
+        <div class="header-text">
+        <h1><strong> Adicione Seu Negócio </strong></h1>
         <h3>Cadastre seu negócio em nossa plataforma para alcançar mais clientes em sua comunidade e fortalecer a economia local.</h3>
+        </div>
 
         <div class="forminfo">
-            <h4>Informações Básicas</h4>
+            <h2><strong>Informações Básicas</strong></h2>
             <h4>Comece com os detalhes principais do seu negócio.</h4>
             
             <div class="inputs-info">
 
             <div class="negocio">
             <h4><label for="nome-negocio">Nome do Negócio</label></h4>
-            <input type="text" id="nome-negocio" name="nome_negocio" placeholder="Ex :Smash do Zé">
+            <input type="text" class="input-negocio" id="nome-negocio" name="nome_negocio" placeholder="Ex :Smash do Zé">
             </div>
             
-            <div class="cartegoria">
-            <h4><label for="opcoes">Cartegoria</label></h4>
-            <select class="input-com-opcoes" id="opcoes" name="cartegoria">
-                <option value="cartegoria-1">Cartegoria 1</option>
-                <option value="cartegoria-2">Cartegoria 2</option>
-                <option value="cartegoria-3">Cartegoria 3</option>
+            <div class="categoria">
+            <h4><label for="opcoes">Categoria</label></h4>
+            <select class="input-com-opcoes" id="opcoes" name="categoria">
+                <option value="none">Selecione uma categoria</option>
+                <option value="categoria-1">Categoria 1</option>
+                <option value="categoria-2">Categoria 2</option>
+                <option value="categoria-3">Categoria 3</option>
             </select>
             </div>
             
             <div class="desc">
             <h4><label for="descricao-negocio">Descrição do Negócio</label></h4>
-            <input type="text" id="descricao-negocio" name="descricao_negocio" class="input-3" placeholder="Conte-nos mais sobre o seu negócio e o que ele oferece">
+            <input type="text" id="descricao-negocio" name="descricao_negocio" class="input-desc" placeholder="Conte-nos mais sobre o seu negócio e o que ele oferece.">
             </div>
             </div>
         </div>
 
+    <div class="divisor"></div>
 
         <div class="formctt">
-            <h4>Informações de Contato</h4>
+            <h2><strong>Informações de Contato</strong></h2>
             <h4>Como seus clientes podem entrar em contato?</h4>
             
             <div class="inputs-ctt">
@@ -65,12 +74,14 @@
             </div>
         </div>
 
+        <div class="divisor"></div>
 
         <div class="formloc">
-            <h4>Localização</h4>
+            <h2><strong>Localização</strong></h2>
             <h4>Onde seu negócio está localizado?</h4>
             
             <div class="inputs-loc">
+
             <div class="endereco">
             <h4><label for="endereco">Endereço</label></h4>
             <input type="text" id="endereco" name="endereco" placeholder="Rua das Flores, 123">
@@ -88,19 +99,26 @@
             </div>
         </div>
 
+        <div class="divisor"></div>
 
         <div class="formmid">
-            <h4>Mídia</h4>
+            <h2><strong>Mídia</strong></h2>
             <h4>Adicione um logotipo e fotos para destacar seu negócio.</h4>
+            <div class="input-mid">
             <input type="file" class="input-formmid">
+            <p><strong>Clique para enviar</strong> ou arraste e solte.</p>
+            <p>PNG, JPG ou GIF (MAX. 800x400px)</p>
+            </div>
         </div>
 
+        <div class="divisor"></div>
         
         <div class="end-buttons">
             <button type="button" class="button-cancel">Cancelar</button>
             <button type="submit" class="button-confirm">Cadastrar Negócio</button>
         </div>
     </form>
+    </div>
 </body>
 
 </html>
