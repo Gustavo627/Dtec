@@ -1,0 +1,53 @@
+body {
+    font-family: Montserrat;
+    margin: 0;
+}
+
+.cadastro-card {
+    padding-top: 2px;
+    padding-bottom: 40px;
+    border-radius: 10px;
+    text-align: center;
+    box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.846);
+    background-color: #264653;
+    margin: 10%;
+    margin-top: 0%;
+}
+
+.cadastro-card h1, h4{
+    color: white;
+}
+
+.cadastro-card input {
+    border: none;
+    border-radius: 15px;
+    padding: 1%;
+}
+
+.end-buttons button{
+    border: none;
+    border-radius: 20px;
+    padding: 1%;
+    margin: 2%;
+    margin-top: 6%;
+}
+
+.button-cancel {
+    background-color: rgb(186, 43, 43);
+}
+
+.button-confirm {
+    background-color: #F4A261;
+}
+
+button {
+    transition: background-color 0.3s ease;
+}
+
+.button-cancel:hover {
+    background-color: rgb(150, 30, 30);
+}
+
+.button-confirm:hover {
+    background-color: #E58C4D;
+}

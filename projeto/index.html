@@ -29,18 +29,27 @@
 
             <div class="negocio">
             <h4><label for="nome-negocio">Nome do Negócio</label></h4>
-            <input type="text" class="input-negocio" id="nome-negocio" name="nome_negocio" placeholder="Ex :Smash do Zé">
+            <input type="text" class="input-negocio" id="nome-negocio" name="nome_negocio" placeholder="Ex :Smash do Zé" required>
             </div>
             
             <div class="categoria">
             <h4><label for="opcoes">Categoria</label></h4>
-            <select class="input-com-opcoes" id="opcoes" name="categoria">
+            <select class="input-com-opcoes" id="opcoes-cart" name="categoria" required>
                 <option value="none">Selecione uma categoria</option>
                 <option value="categoria-1">Categoria 1</option>
                 <option value="categoria-2">Categoria 2</option>
                 <option value="categoria-3">Categoria 3</option>
             </select>
             </div>
+
+            <div class="motoboy">
+                <h4><label for="opcoes">Possui Motoboy próprio?</label></h4>
+                <select class="input-com-opcoes" id="opcoes" name="categoria" required>
+                    <option value="none">Selecione uma opção</option>
+                    <option value="cat-motoboy-1">Sim</option>
+                    <option value="cat-motoboy-2">Não</option>
+                </select>
+                </div>
             
             <div class="desc">
             <h4><label for="descricao-negocio">Descrição do Negócio</label></h4>
@@ -48,6 +57,7 @@
             </div>
             </div>
         </div>
+
 
     <div class="divisor"></div>
 
@@ -59,12 +69,12 @@
 
             <div class="telefone">
             <h4><label for="telefone">Telefone</label></h4>
-            <input type="tel" id="telefone" name="telefone" placeholder="(00) 91234-5678">
+            <input type="number" id="telefone" name="telefone" placeholder="(00) 91234-5678" required>
             </div>
             
             <div class="email">
             <h4><label for="email">E-mail</label></h4>
-            <input type="email" id="email" name="email" placeholder="contato@seunegocio.com">
+            <input type="email" id="email" name="email" placeholder="contato@seunegocio.com" required>
             </div>
             
             <div class="website">
@@ -84,17 +94,17 @@
 
             <div class="endereco">
             <h4><label for="endereco">Endereço</label></h4>
-            <input type="text" id="endereco" name="endereco" placeholder="Rua das Flores, 123">
+            <input type="text" id="endereco" name="endereco" placeholder="Rua das Flores, 123" required>
             </div>
             
             <div class="bairro">
             <h4><label for="bairro">Bairro</label></h4>
-            <input type="text" id="bairro" name="bairro" placeholder="Centro">
+            <input type="text" id="bairro" name="bairro" placeholder="Centro" required>
             </div>
             
             <div class="cidade">
             <h4><label for="cidade">Cidade</label></h4>
-            <input type="text" id="cidade" name="cidade" placeholder="Sua Cidade">
+            <input type="text" id="cidade" name="cidade" placeholder="Sua Cidade" required>
             </div>
             </div>
         </div>
@@ -102,10 +112,20 @@
         <div class="divisor"></div>
 
         <div class="formmid">
-            <h2><strong>Mídia</strong></h2>
-            <h4>Adicione um logotipo e fotos para destacar seu negócio.</h4>
+            <h2><strong>Logotipo</strong></h2>
+            <h4>Adicione um logotipo para destacar seu negócio.</h4>
             <div class="input-mid">
-            <input type="file" class="input-formmid">
+            <input type="file" class="input-formmid" required>
+            <p><strong>Clique para enviar</strong> ou arraste e solte.</p>
+            <p>PNG, JPG ou GIF (MAX. 800x400px)</p>
+            </div>
+        </div>
+
+        <div class="formmid">
+            <h2><strong>Banner</strong></h2>
+            <h4>Escolha uma imagem chamativa para ser o "banner" da sua loja.</h4>
+            <div class="input-mid">
+            <input type="file" class="input-formmid" required>
             <p><strong>Clique para enviar</strong> ou arraste e solte.</p>
             <p>PNG, JPG ou GIF (MAX. 800x400px)</p>
             </div>
@@ -113,7 +133,7 @@
 
         <div class="divisor"></div>
         
-        <div class="end-buttons">
+        <div class="end-buttons" >
             <button type="button" class="button-cancel">Cancelar</button>
             <button type="submit" class="button-confirm">Cadastrar Negócio</button>
         </div>

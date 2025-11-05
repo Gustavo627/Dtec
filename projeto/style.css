@@ -7,7 +7,7 @@
 /*//////////////*/
 
 .card-form {
-    background-color: #fff;
+    background-color: #264653;
     box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.246);
     margin-left: 10%;
     margin-right: 10%;
@@ -17,6 +17,14 @@
     padding-top: 2%;
     padding-bottom: 2%;
 }
+
+.card-form h1 {
+    color: white;
+}
+.card-form h3 {
+    color: lightgray;
+}
+
 
 .divisor {
     border-top: 2px solid rgba(211, 211, 211, 0.568);
@@ -33,10 +41,11 @@
 
 .form-cadastro input {
     border-radius: 8px;
-    border-color: gray;
+    border-color: lightgray;
     border-style: solid;
     padding: 10px;
 }
+
 
 /*//////////////*/
 
@@ -49,6 +58,18 @@
 
 /*//////////////*/
 
+.forminfo h2 {
+    color: white;
+}
+
+.forminfo h4 {
+    color: lightgray;
+}
+
+.forminfo label {
+    color: white;
+}
+
 .inputs-info {
     display: grid;
     grid-template-columns: repeat(2, 1fr);
@@ -60,19 +81,35 @@
 }
 
 .negocio input {
-    width: 90%;
+    width: 193%;
 }
 
 .categoria {
-    grid-column: 2/2;
+    grid-column: 1/2;
 }
 
 .categoria select {
-    border-radius: 8px;
-    border-color: gray;
+    border-radius: 10px;
+    border-color: lightgray;
     border-style: solid;
     padding: 10px;
-    width: 90%;
+    width: 490px;
+}
+
+.categoria select:hover{
+    cursor: pointer;
+}
+
+.motoboy select {
+    border-radius: 8px;
+    border-color: lightgray;
+    border-style: solid;
+    padding: 10px;
+    width: 490px;
+}
+
+.motoboy select:hover {
+    cursor: pointer;
 }
 
 .desc {
@@ -82,14 +119,24 @@
 .desc input {
     width: 178%;
     padding: 50px;
-    text-align: center;
 }
 
 /*//////////////*/
 
-.formctt {
-    border: 10px;
-    border-color: black;
+.formctt h2 {
+    color: white;
+}
+
+.formctt h4 {
+    color: lightgray;
+}
+
+.formctt label {
+    color: white;
+}
+
+.formctt h4{
+    color: lightgray;
 }
 
 .inputs-ctt {
@@ -124,6 +171,18 @@
 
 /*//////////////*/
 
+.formloc h2 {
+    color: white;
+}
+
+.formloc h4 {
+    color: lightgray;
+}
+
+.formloc label {
+    color: white;
+}
+
 .inputs-loc {
     display: grid;
     grid-template-columns: repeat(2, 1fr);
@@ -152,18 +211,42 @@
 
 /*//////////////*/
 
+.formmid h2 {
+    color: white;
+}
+
+.formmid h4 {
+    color: lightgray;
+}
+
+.formmid label {
+    color: white;
+}
+
 .input-mid {
     display: grid;
     position: relative;
     border-style: dashed;
     border-radius: 10px;
     border-color: lightgray;
-    background-color: #b2c5e360;
+    background-color: #5AB6DA;
     margin-left: 2%;
     margin-right: 2%;
     padding: 8%;
     margin-bottom: 2%;
     place-content: center;
+}
+
+.input-mid {
+    transition: background-color 0.3s ease;
+}
+
+.input-mid:hover {
+    background-color: #3e819b;
+}
+
+.button-confirm:hover {
+    background-color: #E58C4D;
 }
 
 .input-formmid {
@@ -182,20 +265,33 @@
 
 .end-buttons {
     display: flex;
+    justify-content: flex-end;
     gap: 18px;
     padding: 2%;
 }
 
 .end-buttons button {
-    border-radius: 5px;
+    border-radius: 20px;
     border: none;
     padding: 10px;
 }
 
 .button-cancel {
-    background-color: lightgray;
+    background-color: rgb(186, 43, 43);
 }
 
 .button-confirm {
-    background-color: rgb(240, 162, 128);
+    background-color: #F4A261;
+}
+
+button {
+    transition: background-color 0.3s ease;
+}
+
+.button-cancel:hover {
+    background-color: rgb(150, 30, 30);
+}
+
+.button-confirm:hover {
+    background-color: #E58C4D;
 }
