@@ -14,6 +14,20 @@ const editIdInput = document.getElementById('editId');
 const editNameInput = document.getElementById('editName')
 const editAgeInput = document.getElementById('editAge')
 
+//SELEÇÃO DE ELEMENTOS MODAL DE LOGIN
+const loginModal = document.getElementById('loginModal')
+const btnLoginModal = document.getElementById('btnLoginnModal')
+const btnCancelLogin = document.getElementById('btnCancelLogin')
+const adminLoginForm = document.getElementById('adminLoginForm')
+const adminAuthStatus = document.getElementById('adminAuthStatus')
+
+//SELEÇÃO DE ELEMENTOS MODAL DE REGISTRO
+const registerModal = document.getElementById('registerModal')
+const btnRegisterModal = document.getElementById('btnRegisterModal')
+const btnCancelRegister = document.getElementById('btnCancelRegister')
+const adminRegisterForm = document.getElementById('adminRegisterForm')
+const adminRegisterStatus = document.getElementById('adminRegisterStatus')
+
 
 //CRIAÇÃO DE FUNÇÕES
 function fetchAndRenderUsers() {
@@ -71,6 +85,24 @@ function deleteUser(userId) {
         fetchAndRenderUsers()
     })
     .catch(error => console.error('Erro ao excluir usuário', error))
+}
+
+//FUNÇÃO PARA CRIAR CONTA - Registrar Admnistrador
+function handleAdminRegister(email, password) {
+    adminRegisterStatus.textContent = "Registrando...";
+    adminRegisterStatus.style.color = "blue";
+
+    fetch('https://localhost:3000/api/register-admin', {
+        method: 'POST',
+        headers: { 'content-Type': 'application/json'},
+        body: JSON.stringify({email, password})
+    })
+    .then(response => respondse.json())
+    .then(data => {
+        if (data.mensagem && data.mensagem.includes('sucesso')) {
+            adminRegisterStatus.style.color
+        }
+    })
 }
 
 function renderUsers(users) {

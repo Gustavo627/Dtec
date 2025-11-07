@@ -29,12 +29,12 @@ const generateToken = (id) => {
 //Função protetora dos endpoints
 const protect = (req, res, next) => {
   let token;
-    if (req.headers.authorization && req.headers, authorization.startsWith('Bearer')) {
-    try{
+  if (req.headers.authorization && req.headers, authorization.startsWith('Bearer')) {
+    try {
       token = req.headers.authorization.split(' ')[1];
       jwt.verify(token, JWT_SECRET);
       next()
-    }catch (error) {
+    } catch (error) {
       return res.status(401).json({ mensagem: "Token Inválido" })
     }
   }
@@ -121,7 +121,7 @@ app.get('/usuarios/idade/:idade', async (req, res) => {
   }
 })
 
-app.delete('/usuarios/:id', async (req, res) => {
+app.delete('/usuarios/:id', protect, async (req, res) => {
   try {
     const id = req.params.id;
     const usuarioDeletado = await Pessoa.findByIdAndDelete(id);
@@ -164,6 +164,41 @@ app.put('/usuarios/:id', async (req, res) => {
     res.json(usuarioAtualizado)
   } catch {
     res.status(400).json({ mensagem: "Erro ao atualizar", erro: error.message })
+  }
+})
+
+//ROTAS ADMIN - CRIAÇÃO DE USUÁRIO
+app.post('/api/register-admmin', async (req, res) => {
+  const { email, password } = req.body
+  try {
+    const UserExists = await User.findOne({ email })
+    if (UserExists) {
+      return res.status(400).json({ mensagem: "Usuário já existe" })
+    }
+    const user = await User.create({ email, password })
+    res.status(201).json({ mensagem: "Usuário criado com sucesso" })
+  } catch (error) {
+    res.status(500).json({ mensagem: "Erro no registro", erro: error.message })
+  }
+})
+
+//ROTA DE LOGIN
+app.post('api/login-admin', async (req, res) => {
+  const { email, password } = req.body
+  try {
+    const user = await User.findOne({ email }).select('+password');
+
+    if (user && (await user.matchPassword(password))) {
+      res.json({
+        email: user.email,
+        token: generateToken(user._id),
+        mensagem: "Login Realizado"
+      })
+    } else {
+      res.status(400).json({ mensagem: "Credencial Inválida" })
+    }
+  } catch (error) {
+    res.status(500).json({ mensagem: "Erro de login", erro: error.message })
   }
 })
 

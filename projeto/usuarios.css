@@ -10,18 +10,35 @@ body {
     text-align: center;
     box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.846);
     background-color: #264653;
-    margin: 10%;
+    margin: 30%;
     margin-top: 0%;
+}
+
+.cadastro-card input {
+    width: 390px;
 }
 
 .cadastro-card h1, h4{
     color: white;
 }
 
+.cadastro-card h4{
+    display: flex;
+    margin-left: 120px;
+}
+
 .cadastro-card input {
     border: none;
     border-radius: 15px;
     padding: 1%;
+    font-family: Montserrat;
+    padding-left: 2%;
+}
+
+.end-buttons{
+    display: flex;
+    justify-content: flex-end;
+    margin-right: 16%;
 }
 
 .end-buttons button{
