@@ -28,6 +28,8 @@ const btnCancelRegister = document.getElementById('btnCancelRegister')
 const adminRegisterForm = document.getElementById('adminRegisterForm')
 const adminRegisterStatus = document.getElementById('adminRegisterStatus')
 
+//Variável global para o token
+let authToken = "";
 
 //CRIAÇÃO DE FUNÇÕES
 function fetchAndRenderUsers() {
@@ -38,12 +40,12 @@ function fetchAndRenderUsers() {
         .then(users => renderUsers(users))
         .catch(error => {
             console.error("Erro ao buscar usuários", error);
-            userCardsContainer.innerHTML = `<p>Erro ao carregar usuários</p>`
-        })              
+            userCardsContainer.innerHTML = `<p>Erro ao carregar usuários. Verifique o servidor.</p>`
+        });
 }
 
 //Função para adicionar um novo usuário
-function addUser(userData){
+function addUser(userData) {
     fetch(API_URL, {
         method: 'POST',
         headers: {
@@ -51,16 +53,16 @@ function addUser(userData){
         },
         body: JSON.stringify(userData)
     })
-    .then(response => response.json())
-    .then(() => {
-        addUserForm.reset();
-        fetchAndRenderUsers();
-    })
-    .catch(error => console.error("Erro ao adicionar usuário", error)) ;   
+        .then(response => response.json())
+        .then(() => {
+            addUserForm.reset();
+            fetchAndRenderUsers();
+        })
+        .catch(error => console.error("Erro ao adicionar usuário", error));
 }
 
 //FUNÇÃO PARA EDITAR USUÁRIO EXISTENTE
-function editUser(userId, userData){
+function editUser(userId, userData) {
     fetch(`${API_URL}/${userId}`, {
         method: 'PUT',
         headers: {
@@ -68,23 +70,39 @@ function editUser(userId, userData){
         },
         body: JSON.stringify(userData)
     })
-    .then(response => response.json())
-    .then(() => {
-        editModal.style.display = 'none';
-        fetchAndRenderUsers();
-    })
-    .catch(error => console.error("Erro ao editar o usuário", error));
+        .then(response => response.json())
+        .then(() => {
+            editModal.style.display = 'none';
+            fetchAndRenderUsers();
+        })
+        .catch(error => console.error("Erro ao editar o usuário", error));
 }
 
 function deleteUser(userId) {
+    if (!authToken) {
+        adminAuthStatus.style.color = 'orange';
+        adminAuthStatus.textContent = 'ERRO: Faça login para deletar';
+        return
+    }
+
     fetch(`${API_URL}/${userId}`, {
-        method: 'DELETE'
+        method: 'DELETE',
+        headers: {
+            'Authorization': `Bearer ${authToken}`
+        }
     })
-    .then(response => response.json())
-    .then(() => {
-        fetchAndRenderUsers()
-    })
-    .catch(error => console.error('Erro ao excluir usuário', error))
+        .then(response => {
+            if (response.status === 401) {
+                adminAuthStatus.style.color = 'red';
+                adminAuthStatus.textContent = 'Não Autorizado! Token Inválido'
+                return response.json().then(err => Promise.reject(err));
+            }
+            return response.json();
+        })
+        .then(() => {
+            fetchAndRenderUsers()
+        })
+        .catch(error => console.error('Erro ao excluir usuário:', error.mensagem))
 }
 
 //FUNÇÃO PARA CRIAR CONTA - Registrar Admnistrador
@@ -94,21 +112,60 @@ function handleAdminRegister(email, password) {
 
     fetch('https://localhost:3000/api/register-admin', {
         method: 'POST',
-        headers: { 'content-Type': 'application/json'},
-        body: JSON.stringify({email, password})
+        headers: { 'content-Type': 'application/json' },
+        body: JSON.stringify({ email, password })
     })
-    .then(response => respondse.json())
-    .then(data => {
-        if (data.mensagem && data.mensagem.includes('sucesso')) {
-            adminRegisterStatus.style.color
-        }
+        .then(response => response.json())
+        .then(data => {
+            if (data.mensagem && data.mensagem.includes("sucesso")) {
+                adminRegisterStatus.style.color = "green";
+                adminRegisterStatus.textContent = "Conta criada com sucesso";
+                setTimeout(() => {
+                    registerModal.style.display = 'none';
+                    document.getElementById('regUsername').value = '';
+                    document.getElementById('regPassword').value = '';
+                }, 2000);
+            } else {
+                adminRegisterStatus.style.color = "red";
+                adminRegisterStatus.textContent = data.mensagem;
+            }
+        })
+        .catch(() => {
+            adminRegisterStatus.style.color = "red";
+            adminRegisterStatus.textContent = "Erro de rede ou servidor";
+        });
+}
+
+//FUNÇÃO PARA LOGIN
+function handleAdminRegister(email, password) {
+    fetch('http://localhost:3000/api/login-admin', {
+        method: "POST",
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ email, password })
     })
+        .then(response => response.json())
+        .then(data => {
+            if (data.token) {
+                authToken = data.token;
+                adminAuthStatus.style.color = 'green';
+                adminAuthStatus.textContent = "Login Realizado";
+                loginModal.style.display = 'none'
+            } else {
+                authToken = "";
+                adminAuthStatus.style.color = "red";
+                adminAuthStatus.textContent = data.mensagem;
+            }
+        })
+        .catch(() => {
+            adminAuthStatus.style.color = "red";
+            adminAuthStatus.textContent = "Erro de Rede ou Servidor"
+        })
 }
 
 function renderUsers(users) {
     userCardsContainer.innerHTML = "";
 
-    if(users.length === 0) {
+    if (users.length === 0) {
         userCardsContainer.innerHTML = `<p>Nenhum usuário cadastrado</p>`
         return;
     }
@@ -119,7 +176,7 @@ function renderUsers(users) {
 
         userCard.innerHTML = `
             <div class="user-info">
-                <p><strong>ID:</strong>${user._id.slice(0,5)}</p>
+                <p><strong>ID:</strong>${user._id.slice(0, 5)}</p>
                 <p><strong>Nome:</strong>${user.nome}</p>
                 <p><strong>Idade:</strong>${user.idade}</p>
             </div>
@@ -140,13 +197,14 @@ function renderUsers(users) {
         })
 
         deleteBtn.addEventListener('click', () => {
-            if(confirm(`Tem certeza que deseja excluir o usuário ${user._id.slice(0,5)}`)){
+            if (confirm(`Tem certeza que deseja excluir o usuário ${user._id.slice(0, 5)}`)) {
                 deleteUser(user._id)
             }
-        })
+        });
+
         userCardsContainer.appendChild(userCard);
 
-    })
+    });
 
 }
 
@@ -157,10 +215,10 @@ addUserForm.addEventListener('submit', (e) => {
     e.preventDefault();//Impede que o submit recarregue a página
 
     const newUserName = document.getElementById('addName').value
-    const newUserAge = document.getElementById('addAge').value;
+    const newUserAge = parseInt(document.getElementById('addAge').value);
 
-    addUser({nome: newUserName, idade: newUserAge})
-})
+    addUser({ nome: newUserName, idade: newUserAge })
+});
 
 editUserForm.addEventListener('submit', (e) => {
     e.preventDefault();
@@ -169,17 +227,56 @@ editUserForm.addEventListener('submit', (e) => {
     const newName = editNameInput.value;
     const newAge = editAgeInput.value;
 
-    editUser(userId, {nome: newName, idade: newAge});
-})
+    editUser(userId, { nome: newName, idade: newAge });
+});
 
 btnCancelEdit.addEventListener('click', () => {
     editModal.style.display = 'none'
+});
+
+//LISTENER MODAL LOGIN
+btnLoginModal.addEventListener('click', () => {
+    loginModal.style.display = "flex"
+});
+
+btnCancelLogin.addEventListener('click', (e) => {
+    loginModal.style.display= "none"
+})
+
+adminLoginForm.addEventListener('submit', (e) => {
+    e.preventDefault();
+    const email = document.getElementById('adminUsername').value
+    const password = document.getElementById('adminPassword').value
+    handleAdminRegister(email, password);
+})
+
+//LISTENERS REGISTRO ADMIN
+btnRegisterModal.addEventListener('click', () => {
+    registerModal.style.display = 'flex';
+    adminRegisterStatus.textContent = '';
+})
+
+btnCancelRegister.addEventListener('click', () => {
+    registerModal.style.display = 'none';
+})
+
+adminRegisterForm.addEventListener('submit', (e) => {
+    e.preventDefault()
+    const email = document.getElementById('regUsername').value
+    const password = document.getElementById('regPassword').value
+    handleAdminRegister(email, password)
 })
 
 window.addEventListener('click', (e) => {
-    if(e.target === editModal) {
+    if (e.target === editModal) {
+        editModal.style.display = 'none'
+    }
+    if (e.target === loginModal) {
+        editModal.style.display = 'none'
+    }
+    if (e.target === registerModal) {
         editModal.style.display = 'none'
     }
 })
 
-fetchAndRenderUsers();
+fetchAndRenderUsers();   

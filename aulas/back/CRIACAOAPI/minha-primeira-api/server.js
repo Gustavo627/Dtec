@@ -62,6 +62,7 @@ app.get('/', (req, res) => {
 })
 
 
+
 app.get('/usuarios', async (req, res) => {
   try {
     const usuarios = await Pessoa.find({});
